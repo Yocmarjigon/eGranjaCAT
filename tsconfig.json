@@ -28,6 +28,12 @@
       ],
       "@spartan-ng/helm/icon": [
         "./libs/ui/ui-icon-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/dialog": [
+        "./libs/ui/ui-dialog-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/label": [
+        "./libs/ui/ui-label-helm/src/index.ts"
       ]
     }
   },

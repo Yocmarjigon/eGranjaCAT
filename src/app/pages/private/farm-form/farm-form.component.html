@@ -1,76 +1,81 @@
-<div class="fixed inset-0 flex justify-center items-center bg-black/50 z-50">
-  <div class="w-full max-w-lg bg-white p-8 rounded-2xl">
-    <h3 class="text-xl font-semibold mb-6 text-center">Formulario de Granja</h3>
+<hlm-dialog>
+  <!-- boton para mostrar dialog -->
+  <button brnDialogTrigger hlmBtn>Crear Granja</button>
+
+  <hlm-dialog-content *brnDialogContent="let ctx" class="p-4">
+    <hlm-dialog-header>
+      <h3 hlmDialogTitle>Crear nueva granja</h3>
+      <p hlmDialogDescription>
+        Rellena los datos de la granja y haz clic en Crear para guardarla.
+      </p>
+    </hlm-dialog-header>
 
     <form
       [formGroup]="form"
       (ngSubmit)="onGuardar()"
       class="flex flex-col gap-4"
     >
-      <div>
-        <label hlmLabel>Nombre</label>
-        <input type="text" formControlName="nombre" hlmInput />
-      </div>
+      <label hlmLabel class="flex flex-col items-start w-full">
+        <span>Nombre</span>
+        <input
+          type="text"
+          formControlName="nombre"
+          placeholder="Nombre de la granja"
+          hlmInput
+          class="block w-full px-3 py-2 border rounded-md placeholder:text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-500"
+        />
+      </label>
 
-      <div>
-        <label hlmLabel>Ubicación</label>
-        <input type="text" formControlName="ubicacion" hlmInput />
-      </div>
+      <label hlmLabel class="flex flex-col items-start w-full">
+        <span>Codigo REGA</span>
+        <input
+          type="text"
+          formControlName="codigo-rega"
+          placeholder="ES210170001532"
+          hlmInput
+          required
+        />
+      </label>
 
-      <div>
-        <label hlmLabel>Teléfono</label>
-        <input type="text" formControlName="telefono" hlmInput />
-      </div>
+      <label hlmLabel class="flex flex-col items-start w-full">
+        <span>Dirección</span>
+        <input
+          type="direccion"
+          formControlName="direccion"
+          placeholder="Calle Falsa 123"
+          hlmInput
+          required
+        />
+      </label>
 
-      <div>
-        <label hlmLabel>Email</label>
-        <input type="email" formControlName="email" hlmInput />
-      </div>
+      <label hlmLabel class="flex flex-col items-start w-full">
+        <span>Email</span>
+        <input
+          type="email"
+          formControlName="email"
+          placeholder="correo@ejemplo.com"
+          hlmInput
+        />
+      </label>
 
-      <div>
-        <label hlmLabel>Nº de Lotes</label>
-        <input type="number" formControlName="lotes" hlmInput min="0" />
-      </div>
-
-      <div class="flex items-center gap-4">
-        <label hlmLabel>Estado</label>
-        <button
-          type="button"
-          class="px-4 py-2 rounded font-medium
-         text-white
-         {{
-            form.get('estado')?.value === 'Activa'
-              ? 'bg-green-500 hover:bg-green-600'
-              : 'bg-red-500 hover:bg-red-600'
-          }}"
-          (click)="toggleEstado()"
-        >
-          {{ form.get("estado")?.value }}
-        </button>
-      </div>
-
-      <div class="flex justify-end gap-4 mt-4">
-        <button
-          type="submit"
-          hlmBtn
-          class="bg-black text-white hover:bg-gray-600 flex items-center gap-2"
-        >
-          <ng-icon hlm name="lucideSave" class="text-white" />
-
-          Guardar
+      <hlm-dialog-footer class="flex justify-end gap-2">
+        <button type="submit" hlmBtn variant="outline" size="sm">
+          <ng-icon hlm size="sm" name="lucideCheck" />
+          Crear
         </button>
 
         <button
           type="button"
           hlmBtn
-          variant="secondary"
-          class="bg-white text-black border border-black hover:bg-gray-200 flex items-center gap-1"
-          (click)="cancelar()"
+          variant="destructive"
+          size="sm"
+          brnDialogClose
+          class="border border-red-500 rounded-md"
         >
-          <ng-icon hlm name="lucideX" class="text-black" />
-          <span class="-mt-0.5">Cancelar</span>
+          <ng-icon hlm size="sm" name="lucideX" />
+          Cancelar
         </button>
-      </div>
+      </hlm-dialog-footer>
     </form>
-  </div>
-</div>
+  </hlm-dialog-content>
+</hlm-dialog>
